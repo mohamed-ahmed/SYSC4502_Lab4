@@ -242,6 +242,7 @@ public class Server extends JFrame implements ActionListener {
 	//------------------------------------
 	private int parse_RTSP_request()
 	{
+		System.out.println("in parse_RTSP_request");
 		int request_type = -1;
 		try{
 			//parse request line and extract the request_type:
@@ -270,10 +271,13 @@ public class Server extends JFrame implements ActionListener {
 
 			//parse the SeqNumLine and extract CSeq field
 			String SeqNumLine = RTSPBufferedReader.readLine();
+			System.out.println("SeqNumLine: ");
 			System.out.println(SeqNumLine);
 			tokens = new StringTokenizer(SeqNumLine);
 			tokens.nextToken();
 			RTSPSeqNb = Integer.parseInt(tokens.nextToken());
+			System.out.println("RTSPSeqNb: ");
+			System.out.println(RTSPSeqNb);
 
 			//get LastLine
 			String LastLine = RTSPBufferedReader.readLine();
@@ -307,7 +311,7 @@ public class Server extends JFrame implements ActionListener {
 			RTSPBufferedWriter.write("CSeq: "+RTSPSeqNb+CRLF);
 			RTSPBufferedWriter.write("Session: "+RTSP_ID+CRLF);
 			RTSPBufferedWriter.flush();
-			//System.out.println("RTSP Server - Sent response to Client.");
+			System.out.println("RTSP Server - Sent response to Client.");
 		}
 		catch(Exception ex)
 		{

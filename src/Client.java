@@ -387,19 +387,22 @@ public class Client{
 
 	private void send_RTSP_request(String request_type)
 	{
+		System.out.println("in send_RTSP_request");
 		try{
 			//Use the RTSPBufferedWriter to write to the RTSP socket
 
 			//write the request line:
-			//RTSPBufferedWriter.write(...);
+			RTSPBufferedWriter.write(request_type + " " + VideoFileName + "RTSP/1.0" + CRLF);
 
 			//write the CSeq line: 
-			//......
+			RTSPBufferedWriter.write("CSeq: " + RTSPSeqNb + CRLF);
 
 			//check if request_type is equal to "SETUP" and in this case write the Transport: line advertising to the server the port used to receive the RTP packets RTP_RCV_PORT
-			//if ....
+			if(request_type == "SETUP"){
+				RTSPBufferedWriter.write("Transport: RTP/UDP; client_port= " + RTP_RCV_PORT);
+			}
 			//otherwise, write the Session line from the RTSPid field
-			//else ....
+			RTSPBufferedWriter.write("Session: " + RTSPid);
 
 			RTSPBufferedWriter.flush();
 		}
