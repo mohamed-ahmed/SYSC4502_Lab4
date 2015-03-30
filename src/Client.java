@@ -111,6 +111,7 @@ public class Client{
 	//------------------------------------
 	public static void main(String argv[]) throws Exception
 	{
+		System.out.println("in main in Client");
 		//Create a Client object
 		Client theClient = new Client();
 
@@ -133,6 +134,7 @@ public class Client{
 
 		//init RTSP state:
 		state = INIT;
+		System.out.println("State is INIT");
 	}
 
 
@@ -153,6 +155,7 @@ public class Client{
 
 			if (state == INIT) 
 			{
+				System.out.println("Init non-blocking RTPsocket that will be used to receive data");
 				//Init non-blocking RTPsocket that will be used to receive data
 				try{
 					//construct a new DatagramSocket to receive RTP packets from the server, on port RTP_RCV_PORT
@@ -184,6 +187,9 @@ public class Client{
 					System.out.println("New RTSP state: " + "READY" );
 				}
 			}//else if state != INIT then do nothing
+			else{
+				System.out.println("state was not INIT, doing nothing");
+			}
 		}
 	}
 
