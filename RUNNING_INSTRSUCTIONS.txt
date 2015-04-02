@@ -1,0 +1,11 @@
+To run on windows, you can  double click
+the running_server.bat file in this folder,
+then double click the running_client.bat file in this folder.
+
+To run in any other OS go to the root folder and run:
+
+java -cp bin Server 6789
+
+and in another window
+
+java -cp bin Client localhost 6789 movie.Mjpeg 2500
